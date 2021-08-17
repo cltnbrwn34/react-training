@@ -9,7 +9,7 @@ export async function deleteFood(id:number) {
     if (!response.ok){
         throw new Error("Delete failed!")
     }
-    return await (await response).json();
+    return response.json();
 }
 
 export async function createFood() {

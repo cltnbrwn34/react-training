@@ -1,4 +1,4 @@
-import { getFood } from "./api/foodsApi"
+import { getFood, deleteFood } from "./api/foodsApi"
 import { useEffect, useState} from "react"
 type Food = {
     id: number
@@ -41,7 +41,12 @@ export function App(props: any) {
               {/*add a delete button next to name. When clicekd, alert('clicked')*/}
             {inventory.map((food) => (
                 <tr key={food.id}>
-                    <td><button type="button" onClick={() => alert('Clicked Delete!')}>X</button></td>
+                    <td><button type="button" onClick={async () => {
+                        deleteFood(food.id);
+                        //remove deleted food from state
+                        const remainingInventory = inventory.filter(fud => fud.id !== food.id);
+                        setFoods(remainingInventory);
+                    }}>X</button></td>
                     <td>{food.quantity}</td>
                     <td>{food.name}</td>
                     <td>{food.minimumQuantity}</td>
