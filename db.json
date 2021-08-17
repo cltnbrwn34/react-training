@@ -1,0 +1,43 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "inventory":[
+    
+    {
+      "id":1,
+      "name": "Carrot",
+      "quantity": 3,
+      "minimumQuantity": 1,
+      "type": "vegetable"
+    },
+    {
+      "id":2,
+      "name": "Potato",
+      "quantity": 8,
+      "type": "vegetable",
+      "minimumQuantity": 1
+    },
+    {
+      "id":3,
+      "name": "Steak",
+      "quantity": 3,
+      "type": "meat",
+      "minimumQuantity": 1 
+    }
+  ]
+}
