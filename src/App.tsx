@@ -1,6 +1,6 @@
 import { getFood, deleteFood } from "./api/foodsApi"
 import { useEffect, useState} from "react"
-type Food = {
+export type Food = {
     id: number
     name: string;
     quantity: number;
@@ -14,10 +14,8 @@ export function App(props: any) {
 
     useEffect(() => {
         async function callGetFood(){
-        const response = await getFood();
-        if (!response.ok) throw new Error("Call to getFood failed!");
-        const json = await response.json();
-        setFoods(json);
+            const data = await getFood();
+            setFoods(data);
         }
         callGetFood();
     }, []);//using empty array for useEffect since we only want this to run once
