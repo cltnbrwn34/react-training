@@ -8,6 +8,8 @@ render( <App />, document.getElementById('root'));
 //class                     V className
 //for                       V htmlFor 
 //inline Styles are strings V inline Styles are objects, values can be numbers=px
+//attributes are kebab-case V probs are camelCase
+
 
 //const headStyle = { color: "blue", marginBottom: 10 };
 //first react component

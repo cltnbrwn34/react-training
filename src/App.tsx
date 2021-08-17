@@ -20,7 +20,7 @@ export function App(props: any) {
         setFoods(json);
         }
         callGetFood();
-    });
+    }, []);//using empty array for useEffect since we only want this to run once
     
     return (
     <>
@@ -30,6 +30,7 @@ export function App(props: any) {
         <table>
           <thead>
               <tr>
+                <th>Delete</th>
                 <th>Qty.</th>
                 <th>Name</th>
                 <th>Min Qty.</th>
@@ -37,8 +38,10 @@ export function App(props: any) {
             </tr>
           </thead>
           <tbody>
+              {/*add a delete button next to name. When clicekd, alert('clicked')*/}
             {inventory.map((food) => (
                 <tr key={food.id}>
+                    <td><button type="button" onClick={() => alert('Clicked Delete!')}>X</button></td>
                     <td>{food.quantity}</td>
                     <td>{food.name}</td>
                     <td>{food.minimumQuantity}</td>
