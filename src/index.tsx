@@ -15,4 +15,4 @@ render( <App />, document.getElementById('root'));
 //     return <h1 className="head" style={headStyle}>{props.children}</h1>;
 // }
 
-//render something JSX, into root ID in index.html
+//render something JSX, into root ID in index.html update
