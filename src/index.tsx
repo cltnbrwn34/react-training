@@ -1,17 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {render} from 'react-dom';
+import { App } from './App';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+render( <App />, document.getElementById('root'));
+
+//HTML                      V JSX
+//class                     V className
+//for                       V htmlFor 
+//inline Styles are strings V inline Styles are objects, values can be numbers=px
+
+//const headStyle = { color: "blue", marginBottom: 10 };
+//first react component
+// function Heading(props: any) {
+//     return <h1 className="head" style={headStyle}>{props.children}</h1>;
+// }
+
+//render something JSX, into root ID in index.html
