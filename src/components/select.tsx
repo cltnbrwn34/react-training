@@ -18,19 +18,21 @@ export function Select({
   value,
   options,
   onChange,
+  id,
+  label,
 }: SelectProps) {
   return (
-    <select onChange={onChange}>
-      <option value="">{placeholderOption}</option>
-      {options.map((option) => (
-        <option
-          selected={value === option.value}
-          key={option.value}
-          value={option.value}
-        >
-          {option.label}
-        </option>
-      ))}
-    </select>
+    <div>
+      <label htmlFor={id}>{label}</label>
+      <br />
+      <select id={id} onChange={onChange} value={value}>
+        <option value="">{placeholderOption}</option>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }

@@ -66,7 +66,6 @@ export function App(props: any) {
           type="number"
           value={newFood.minimumQuantity}
         />
-        <br />
         <Select
           onChange={onChange}
           id="type"
