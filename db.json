@@ -39,5 +39,23 @@
       "type": "meat",
       "minimumQuantity": 1 
     }
+  ],
+  "foodType":[
+    
+    {
+      "id":1,
+      "name": "Vegetable",
+      "value": "vegetable"
+    },
+    {
+      "id":2,
+      "name": "Meat",
+      "value": "meat"
+    },
+    {
+      "id":3,
+      "name": "Forut",
+      "value": "fruit"
+    }
   ]
 }
