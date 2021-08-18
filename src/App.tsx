@@ -1,11 +1,7 @@
-import { getFood, deleteFood, createFood } from "./api/foodsApi";
-import { getFoodOptions, deleteFoodOptions } from "./api/foodTypesApi";
-import React, { useEffect, useState } from "react";
+import { getFood, deleteFood } from "./api/foodsApi";
+import { useEffect, useState } from "react";
 import { Food, NewFood } from "./types/Food";
-import { Input } from "./components/Input";
-import { Select } from "./components/select";
-import { SelectOption } from "./types/SelectOption";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const emptyFood: NewFood = {
@@ -35,77 +31,11 @@ export function App(props: any) {
   //   }
   //   callGetFoodOptions();
   // }, []); //using empty array for useEffect since we only want this to run once
-  function onChange(
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) {
-    //create new object that containes one udpated property
-    const { value, id } = event.target;
-    setNewFood({ ...newFood, [id]: value });
-  }
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    //Exercise2: save form data
-    //tip: create - http:localhost:3001/foods
-    //post
-    event.preventDefault();
-    try {
-      const addedFood = await createFood(newFood);
-      setFoods([...inventory, addedFood]);
-      setNewFood(emptyFood);
-      toast.success(addedFood.name + " added to Inventory!🐱‍🚀");
-    } catch (error) {
-      alert("error");
-    }
-  }
   return (
     <>
       <ToastContainer />
       <h1>Restaurant Manager</h1>
-      <form onSubmit={handleSubmit}>
-        <Input
-          onChange={onChange}
-          id="name"
-          label="Name"
-          type={props.type}
-          value={newFood.name}
-        />
-        <Input
-          onChange={onChange}
-          id="quantity"
-          label="Quantity"
-          type="number"
-          value={newFood.quantity}
-        />
-        <Input
-          onChange={onChange}
-          id="minimumQuantity"
-          label="Minimum Quantity"
-          type="number"
-          value={newFood.minimumQuantity}
-        />
-        <Select
-          onChange={onChange}
-          id="type"
-          label="Type"
-          placeholderOption="Select an option"
-          value={newFood.type}
-          options={[
-            {
-              label: "Vegetable",
-              value: "vegetable",
-            },
-            {
-              label: "Meat",
-              value: "meat",
-            },
-            {
-              label: "Forut",
-              value: "fruit",
-            },
-          ]}
-        />
-        <input type="submit" value="Save Food" />
-      </form>
       <br />
       <ul>
         {/* exercise 1: display quantity next to food with a dash in between */}

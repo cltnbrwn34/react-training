@@ -3,6 +3,7 @@ import { App } from "./App";
 import { BrowserRouter, Route } from "react-router-dom";
 import { About } from "./about";
 import { Nav } from "./Nav";
+import { FoodForm } from "./FoodForm";
 
 render(
   <BrowserRouter>
@@ -12,6 +13,9 @@ render(
     </Route>
     <Route path="/" exact>
       <App />
+    </Route>
+    <Route path="/foodform">
+      <FoodForm />
     </Route>
   </BrowserRouter>,
   document.getElementById("root")

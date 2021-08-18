@@ -60,11 +60,18 @@
       "id": 6
     },
     {
-      "name": "Celery",
-      "quantity": "3",
-      "minimumQuantity": "0",
+      "name": "Grapes",
+      "quantity": "50000",
+      "minimumQuantity": "400",
+      "type": "fruit",
+      "id": 8
+    },
+    {
+      "name": "Fries",
+      "quantity": "49",
+      "minimumQuantity": "34",
       "type": "vegetable",
-      "id": 7
+      "id": 9
     }
   ],
   "foodType": [
