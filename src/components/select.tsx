@@ -7,13 +7,21 @@ type SelectProps = {
   id: string;
   label: string;
   options: SelectOption[];
+  placeholderOption: string;
+  value: string;
 };
 
-export function Select(props: SelectProps) {
+//destructured props in signature to avoid pros.something all over code
+export function Select({ placeholderOption, value, options }: SelectProps) {
   return (
     <select>
-      {props.options.map((option) => (
-        <option key={option.value} value={option.value}>
+      <option value="">{placeholderOption}</option>
+      {options.map((option) => (
+        <option
+          selected={value === option.value}
+          key={option.value}
+          value={option.value}
+        >
           {option.label}
         </option>
       ))}

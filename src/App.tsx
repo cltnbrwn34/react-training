@@ -1,11 +1,22 @@
 import { getFood, deleteFood } from "./api/foodsApi";
-import { useEffect, useState } from "react";
-import { Food } from "./types/Food";
+import { getFoodOptions, deleteFoodOptions } from "./api/foodTypesApi";
+import React, { useEffect, useState } from "react";
+import { Food, NewFood } from "./types/Food";
 import { Input } from "./components/Input";
 import { Select } from "./components/select";
+import { SelectOption } from "./types/SelectOption";
+
+const emptyFood: NewFood = {
+  name: "",
+  quantity: "",
+  minimumQuantity: "",
+  type: "",
+};
 
 export function App(props: any) {
   const [inventory, setFoods] = useState<Food[]>([]);
+  const [newFood, setNewFood] = useState<NewFood>(emptyFood);
+  //const [foodOptions, setFoodOptions] = useState<SelectOption[]>([]);
 
   useEffect(() => {
     async function callGetFood() {
@@ -15,16 +26,51 @@ export function App(props: any) {
     callGetFood();
   }, []); //using empty array for useEffect since we only want this to run once
 
+  // useEffect(() => {
+  //   async function callGetFoodOptions() {
+  //     const data = await getFoodOptions();
+  //     setFoodOptions(data);
+  //   }
+  //   callGetFoodOptions();
+  // }, []); //using empty array for useEffect since we only want this to run once
+  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+    //create new object that containes one udpated property
+    const { value, id } = event.target;
+    setNewFood({ ...newFood, [id]: value });
+  }
+
   return (
     <>
       <h1>Restaurant Manager</h1>
       <form>
-        <Input id="name" label="Name" inputType="text" />
-        <Input id="quantity" label="Quantity" inputType="number" />
+        <Input
+          onChange={onChange}
+          id="name"
+          label="Name"
+          inputType="text"
+          value={newFood.name}
+        />
+        <Input
+          onChange={onChange}
+          id="quantity"
+          label="Quantity"
+          inputType="number"
+          value={newFood.quantity}
+        />
+        <Input
+          onChange={onChange}
+          id="minimumQuantity"
+          label="Minimum Quantity"
+          inputType="number"
+          value={newFood.minimumQuantity}
+        />
+        <br />
         <br />
         <Select
           id="type"
           label="Type"
+          placeholderOption="Select an option"
+          value={newFood.type}
           options={[
             {
               label: "Vegetable",

@@ -6,7 +6,7 @@ export function Input(props: InputProps) {
     <div>
       <label htmlFor={props.id}>{props.label}</label>
       <br />
-      <input id={props.id} type={props.inputType} />
+      <input id={props.id} type={props.inputType} value={props.value} />
     </div>
   );
 }
