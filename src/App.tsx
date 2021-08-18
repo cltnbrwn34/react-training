@@ -33,7 +33,9 @@ export function App(props: any) {
   //   }
   //   callGetFoodOptions();
   // }, []); //using empty array for useEffect since we only want this to run once
-  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function onChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
     //create new object that containes one udpated property
     const { value, id } = event.target;
     setNewFood({ ...newFood, [id]: value });
@@ -47,26 +49,26 @@ export function App(props: any) {
           onChange={onChange}
           id="name"
           label="Name"
-          inputType="text"
+          type={props.type}
           value={newFood.name}
         />
         <Input
           onChange={onChange}
           id="quantity"
           label="Quantity"
-          inputType="number"
+          type="number"
           value={newFood.quantity}
         />
         <Input
           onChange={onChange}
           id="minimumQuantity"
           label="Minimum Quantity"
-          inputType="number"
+          type="number"
           value={newFood.minimumQuantity}
         />
         <br />
-        <br />
         <Select
+          onChange={onChange}
           id="type"
           label="Type"
           placeholderOption="Select an option"
@@ -87,6 +89,7 @@ export function App(props: any) {
           ]}
         />
       </form>
+      <br />
       <ul>
         {/* exercise 1: display quantity next to food with a dash in between */}
         <table>

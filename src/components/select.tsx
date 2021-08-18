@@ -9,12 +9,18 @@ type SelectProps = {
   options: SelectOption[];
   placeholderOption: string;
   value: string;
+  onChange: React.ChangeEventHandler<HTMLSelectElement>;
 };
 
 //destructured props in signature to avoid pros.something all over code
-export function Select({ placeholderOption, value, options }: SelectProps) {
+export function Select({
+  placeholderOption,
+  value,
+  options,
+  onChange,
+}: SelectProps) {
   return (
-    <select>
+    <select onChange={onChange}>
       <option value="">{placeholderOption}</option>
       {options.map((option) => (
         <option

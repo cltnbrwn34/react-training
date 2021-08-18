@@ -1,12 +1,18 @@
 import React from "react";
 import { InputProps } from "../types/InputProps";
 
-export function Input(props: InputProps) {
+export function Input({
+  label,
+  id,
+  value,
+  onChange,
+  type = "text",
+}: InputProps) {
   return (
     <div>
-      <label htmlFor={props.id}>{props.label}</label>
+      <label htmlFor={id}>{label}</label>
       <br />
-      <input id={props.id} type={props.inputType} value={props.value} />
+      <input onChange={onChange} id={id} type={type} value={value} />
     </div>
   );
 }

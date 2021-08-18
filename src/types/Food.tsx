@@ -8,7 +8,7 @@ export type Food = {
 
 export type NewFood = {
   name: string;
-  quantity: number;
-  minimumQuantity: number;
+  quantity: string;
+  minimumQuantity: string;
   type: string;
 };

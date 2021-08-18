@@ -38,6 +38,13 @@
       "quantity": 3,
       "type": "meat",
       "minimumQuantity": 1 
+    },
+    {
+      "id":4,
+      "name": "Shrip",
+      "quantity": 4,
+      "type": "meat",
+      "minimumQuantity": 4 
     }
   ],
   "foodType":[
