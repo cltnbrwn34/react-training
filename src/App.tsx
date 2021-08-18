@@ -1,12 +1,6 @@
 import { getFood, deleteFood } from "./api/foodsApi"
 import { useEffect, useState} from "react"
-export type Food = {
-    id: number
-    name: string;
-    quantity: number;
-    minimumQuantity: number;
-    type: string;
-};
+import { Food } from "./types/Food";
 
 export function App(props: any) {
 

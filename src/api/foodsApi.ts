@@ -1,4 +1,4 @@
-import { Food } from "../App";
+import { Food } from "../types/Food";
 
 export async function getFood() {
     const response = await fetch ("http://localhost:3001/inventory");
