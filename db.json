@@ -16,51 +16,70 @@
   "profile": {
     "name": "typicode"
   },
-  "inventory":[
-    
+  "inventory": [
     {
-      "id":1,
+      "id": 1,
       "name": "Carrot",
       "quantity": 3,
       "minimumQuantity": 1,
       "type": "vegetable"
     },
     {
-      "id":2,
+      "id": 2,
       "name": "Potato",
       "quantity": 8,
       "type": "vegetable",
       "minimumQuantity": 1
     },
     {
-      "id":3,
+      "id": 3,
       "name": "Steak",
       "quantity": 3,
       "type": "meat",
-      "minimumQuantity": 1 
+      "minimumQuantity": 1
     },
     {
-      "id":4,
+      "id": 4,
       "name": "Shrip",
       "quantity": 4,
       "type": "meat",
-      "minimumQuantity": 4 
+      "minimumQuantity": 4
+    },
+    {
+      "name": "Apple",
+      "quantity": "3",
+      "minimumQuantity": "1",
+      "type": "fruit",
+      "id": 5
+    },
+    {
+      "name": "FIsh",
+      "quantity": "2",
+      "minimumQuantity": "1",
+      "type": "meat",
+      "id": 6
+    },
+    {
+      "name": "Celery",
+      "quantity": "3",
+      "minimumQuantity": "0",
+      "type": "vegetable",
+      "id": 7
     }
   ],
-  "foodType":[
-    
+  "foodType": [
     {
-      "id":1,
+      "id": 1,
       "name": "Vegetable",
       "value": "vegetable"
     },
     {
-      "id":2,
+      "id": 2,
       "name": "Meat",
       "value": "meat"
     },
     {
-      "id":3,
+      "id": 3,
       "name": "Fruit",
       "value": "fruit"
     }

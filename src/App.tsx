@@ -1,10 +1,12 @@
-import { getFood, deleteFood } from "./api/foodsApi";
+import { getFood, deleteFood, createFood } from "./api/foodsApi";
 import { getFoodOptions, deleteFoodOptions } from "./api/foodTypesApi";
 import React, { useEffect, useState } from "react";
 import { Food, NewFood } from "./types/Food";
 import { Input } from "./components/Input";
 import { Select } from "./components/select";
 import { SelectOption } from "./types/SelectOption";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const emptyFood: NewFood = {
   name: "",
@@ -41,10 +43,25 @@ export function App(props: any) {
     setNewFood({ ...newFood, [id]: value });
   }
 
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    //Exercise2: save form data
+    //tip: create - http:localhost:3001/foods
+    //post
+    event.preventDefault();
+    try {
+      const addedFood = await createFood(newFood);
+      setFoods([...inventory, addedFood]);
+      setNewFood(emptyFood);
+      toast.success(addedFood.name + " added to Inventory!🐱‍🚀");
+    } catch (error) {
+      alert("error");
+    }
+  }
   return (
     <>
+      <ToastContainer />
       <h1>Restaurant Manager</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Input
           onChange={onChange}
           id="name"
@@ -87,6 +104,7 @@ export function App(props: any) {
             },
           ]}
         />
+        <input type="submit" value="Save Food" />
       </form>
       <br />
       <ul>

@@ -1,15 +1,27 @@
-import {render} from 'react-dom';
-import { App } from './App';
+import { render } from "react-dom";
+import { App } from "./App";
+import { BrowserRouter, Route } from "react-router-dom";
+import { About } from "./about";
+import { Nav } from "./Nav";
 
-
-render( <App />, document.getElementById('root'));
+render(
+  <BrowserRouter>
+    <Nav />
+    <Route path="/about">
+      <About />
+    </Route>
+    <Route path="/" exact>
+      <App />
+    </Route>
+  </BrowserRouter>,
+  document.getElementById("root")
+);
 
 //HTML                      V JSX
 //class                     V className
-//for                       V htmlFor 
+//for                       V htmlFor
 //inline Styles are strings V inline Styles are objects, values can be numbers=px
 //attributes are kebab-case V probs are camelCase
-
 
 //const headStyle = { color: "blue", marginBottom: 10 };
 //first react component
