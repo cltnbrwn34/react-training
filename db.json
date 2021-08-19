@@ -18,53 +18,25 @@
   },
   "foods": [
     {
-      "id": 1,
-      "name": "Carrot",
-      "quantity": 3,
-      "minimumQuantity": 1,
-      "type": "vegetable"
-    },
-    {
-      "id": 2,
-      "name": "Potato",
-      "quantity": 8,
-      "type": "vegetable",
-      "minimumQuantity": 1
-    },
-    {
-      "id": 3,
-      "name": "Steak",
-      "quantity": 3,
-      "type": "meat",
-      "minimumQuantity": 1
-    },
-    {
-      "id": 4,
-      "name": "Shrip",
-      "quantity": 4,
-      "type": "meat",
-      "minimumQuantity": 4
-    },
-    {
       "name": "Apple",
-      "quantity": "3",
-      "minimumQuantity": "1",
+      "quantity": "5",
+      "minQuantity": "2",
       "type": "fruit",
-      "id": 5
+      "id": 1
     },
     {
-      "name": "FIsh",
+      "name": "Steak",
       "quantity": "2",
-      "minimumQuantity": "1",
+      "minQuantity": "2",
       "type": "meat",
-      "id": 6
+      "id": 2
     },
     {
-      "name": "Grapes",
-      "quantity": "50000",
-      "minimumQuantity": "400",
-      "type": "fruit",
-      "id": 8
+      "name": "Fish",
+      "quantity": "01",
+      "minQuantity": "01",
+      "type": "meat",
+      "id": 3
     }
   ],
   "foodType": [

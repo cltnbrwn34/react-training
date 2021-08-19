@@ -1,83 +1,46 @@
-import { useEffect, useState } from "react";
-import { getFoods, deleteFood } from "./api/foodsApi";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Home } from "./Home";
+import { BrowserRouter, Route } from "react-router-dom";
+import { About } from "./About";
+import { Nav } from "./Nav";
+import { FoodForm } from "./FoodForm";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { UserContextProvider, UserContextType } from "./UserContext";
 
-export type Food = {
-  id: number;
-  name: string;
-  quantity: number;
-  minQuantity: number;
-  type: string;
+// HTML                         vs  JSX
+// class                            className
+// for                              htmlFor
+// inline styles are strings        Inline styles are objects, Numbers = px.
+// <!-- comments like this -->      {/* comments like this */}
+// attributes are kebab-cased       props are camelCased
+// options accept selected          select accepts value
+const user: UserContextType = {
+  email: "C@b.com",
+  name: "Colton",
+  role: "admin",
+  token: "123456",
 };
-
 export function App() {
-  const [foods, setFoods] = useState<Food[]>([]);
-
-  // Long form of the above that avoids using array destructuring.
-  // const foodStateArray = useState<Food[]>([]);
-  // const foods = foodStateArray[0];
-  // const setFoods = foodStateArray[1];
-
-  useEffect(() => {
-    async function callGetFoods() {
-      // Using underscore to avoid naming conflict
-      const _foods = await getFoods();
-      setFoods(_foods);
-    }
-    callGetFoods();
-    // Using empty array for useEffect since we only want this to run once.
-  }, []);
+  const queryCLient = new QueryClient();
 
   return (
-    <>
-      <ToastContainer />
-      <h1>Food Manager</h1>
-
-      <Link className="btn btn-secondary" to="/food">
-        Add Food
-      </Link>
-      {foods.length > 0 ? (
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Quantity</th>
-              <th>Min Quantity</th>
-              <th>Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            {foods.map((food) => (
-              <tr key={food.name}>
-                <td>
-                  <button
-                    onClick={async () => {
-                      await deleteFood(food.id);
-                      // Return a new array with the id that was just deleted omitted.
-                      const newFoods = foods.filter((f) => f.id !== food.id);
-                      setFoods(newFoods);
-                    }}
-                  >
-                    X
-                  </button>
-                </td>
-                {/* Exercise 3: Link to the edit page for each food */}
-                <td>
-                  <Link to={"/food/" + food.id}>{food.name}</Link>
-                </td>
-                <td>{food.quantity}</td>
-                <td>{food.minQuantity}</td>
-                <td>{food.type}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <h2>Uh oh, no food in pantry!</h2>
-      )}
-    </>
+    <UserContextProvider value={user}>
+      <QueryClientProvider client={queryCLient}>
+        <BrowserRouter>
+          <Nav />
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/food" exact>
+            <FoodForm />
+          </Route>
+          <Route path="/food/:foodId">
+            <FoodForm />
+          </Route>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </UserContextProvider>
   );
 }
