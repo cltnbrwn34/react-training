@@ -16,7 +16,7 @@
   "profile": {
     "name": "typicode"
   },
-  "inventory": [
+  "foods": [
     {
       "id": 1,
       "name": "Carrot",

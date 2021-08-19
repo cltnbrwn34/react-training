@@ -1,48 +1,36 @@
-import { Food, NewFood } from "../types/Food";
+import { Food } from "../App";
+import { NewFood } from "../FoodForm";
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
-export async function getFood() {
-  const response = await fetch(baseUrl + "inventory");
-  if (!response.ok) throw new Error("Call to get foods failed!");
+export async function getFoods() {
+  const response = await fetch(baseUrl + "foods");
+  if (!response.ok) throw new Error("Call to get foods failed");
   return response.json() as Promise<Food[]>;
 }
 
-export async function getSingleFood(id: number) {
-  const response = await fetch(baseUrl + "inventory/" + id);
-  if (!response.ok) throw new Error("Call to get a single food failed!");
+export async function getFood(id: number) {
+  const response = await fetch(baseUrl + "foods/" + id);
+  if (!response.ok) throw new Error("Call to get food failed");
   return response.json() as Promise<Food>;
 }
 
 export async function deleteFood(id: number) {
-  const response = await fetch(baseUrl + "inventory/" + id, {
+  const response = await fetch(baseUrl + "foods/" + id, {
     method: "DELETE",
   });
-  if (!response.ok) {
-    throw new Error("Delete failed!");
-  }
+  if (!response.ok) throw new Error("Delete failed");
   return response.json();
 }
 
-export async function createFood(newFood: NewFood) {
-  const response = await fetch("http://localhost:3001/inventory/", {
+export async function addFood(food: NewFood) {
+  const response = await fetch(baseUrl + "foods", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newFood),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(food),
   });
-  if (!response.ok) {
-    throw new Error("Insert failed!");
-  }
-  return response.json();
-}
-
-export async function updateFood(food: Food) {
-  const response = await fetch(
-    "http://localhost:3001/inventory/update/" + food.id,
-    {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(food),
-    }
-  );
+  if (!response.ok) throw new Error("Call to add foods failed");
+  return response.json() as Promise<Food>;
 }

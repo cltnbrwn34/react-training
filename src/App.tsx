@@ -1,81 +1,83 @@
-import { getFood, deleteFood } from "./api/foodsApi";
 import { useEffect, useState } from "react";
-import { Food } from "./types/Food";
+import { getFoods, deleteFood } from "./api/foodsApi";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
-export function App(props: any) {
-  const [inventory, setFoods] = useState<Food[]>([]);
-  //const [foodOptions, setFoodOptions] = useState<SelectOption[]>([]);
+export type Food = {
+  id: number;
+  name: string;
+  quantity: number;
+  minQuantity: number;
+  type: string;
+};
+
+export function App() {
+  const [foods, setFoods] = useState<Food[]>([]);
+
+  // Long form of the above that avoids using array destructuring.
+  // const foodStateArray = useState<Food[]>([]);
+  // const foods = foodStateArray[0];
+  // const setFoods = foodStateArray[1];
 
   useEffect(() => {
-    async function callGetFood() {
-      const data = await getFood();
-      setFoods(data);
+    async function callGetFoods() {
+      // Using underscore to avoid naming conflict
+      const _foods = await getFoods();
+      setFoods(_foods);
     }
-    callGetFood();
-  }, []); //using empty array for useEffect since we only want this to run once
-
-  // useEffect(() => {
-  //   async function callGetFoodOptions() {
-  //     const data = await getFoodOptions();
-  //     setFoodOptions(data);
-  //   }
-  //   callGetFoodOptions();
-  // }, []); //using empty array for useEffect since we only want this to run once
+    callGetFoods();
+    // Using empty array for useEffect since we only want this to run once.
+  }, []);
 
   return (
     <>
       <ToastContainer />
-      <h1>Restaurant Manager</h1>
-      <br />
-      <Link className="btn btn-secondary" to="/foodForm">
+      <h1>Food Manager</h1>
+
+      <Link className="btn btn-secondary" to="/food">
         Add Food
       </Link>
-      <br />
-      <ul>
-        {/* exercise 1: display quantity next to food with a dash in between */}
+      {foods.length > 0 ? (
         <table>
           <thead>
             <tr>
-              <th>Delete</th>
-              <th>Qty.</th>
+              <th></th>
               <th>Name</th>
-              <th>Min Qty.</th>
+              <th>Quantity</th>
+              <th>Min Quantity</th>
               <th>Type</th>
             </tr>
           </thead>
           <tbody>
-            {/*add a delete button next to name. When clicekd, alert('clicked')*/}
-            {inventory.map((food) => (
-              <tr key={food.id}>
+            {foods.map((food) => (
+              <tr key={food.name}>
                 <td>
                   <button
-                    type="button"
                     onClick={async () => {
-                      deleteFood(food.id);
-                      //remove deleted food from state
-                      const remainingInventory = inventory.filter(
-                        (fud) => fud.id !== food.id
-                      );
-                      setFoods(remainingInventory);
+                      await deleteFood(food.id);
+                      // Return a new array with the id that was just deleted omitted.
+                      const newFoods = foods.filter((f) => f.id !== food.id);
+                      setFoods(newFoods);
                     }}
                   >
                     X
                   </button>
                 </td>
-                <td>{food.quantity}</td>
+                {/* Exercise 3: Link to the edit page for each food */}
                 <td>
-                  <Link to={`/food/{$food.id}`}>{food.name}</Link>
+                  <Link to={"/food/" + food.id}>{food.name}</Link>
                 </td>
-                <td>{food.minimumQuantity}</td>
+                <td>{food.quantity}</td>
+                <td>{food.minQuantity}</td>
                 <td>{food.type}</td>
               </tr>
             ))}
           </tbody>
         </table>
-      </ul>
+      ) : (
+        <h2>Uh oh, no food in pantry!</h2>
+      )}
     </>
   );
 }
