@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 export function Nav() {
   return (
     <nav>
+      <h1>Restaurant Manager</h1>
       <ul>
         <li>
           <Link to="/">Home</Link>

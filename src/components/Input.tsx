@@ -16,3 +16,7 @@ export function Input({
     </div>
   );
 }
+//alternative defaultProps approach
+// Input.defaultProps = {
+//   type: "number",
+// };

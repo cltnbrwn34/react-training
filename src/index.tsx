@@ -14,7 +14,10 @@ render(
     <Route path="/" exact>
       <App />
     </Route>
-    <Route path="/foodform">
+    <Route path="/food" exact>
+      <FoodForm />
+    </Route>
+    <Route path="/food/:foodId">
       <FoodForm />
     </Route>
   </BrowserRouter>,
@@ -26,6 +29,7 @@ render(
 //for                       V htmlFor
 //inline Styles are strings V inline Styles are objects, values can be numbers=px
 //attributes are kebab-case V probs are camelCase
+//options accept selected   V select acceps selected
 
 //const headStyle = { color: "blue", marginBottom: 10 };
 //first react component

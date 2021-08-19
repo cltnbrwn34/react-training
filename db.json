@@ -65,13 +65,6 @@
       "minimumQuantity": "400",
       "type": "fruit",
       "id": 8
-    },
-    {
-      "name": "Fries",
-      "quantity": "49",
-      "minimumQuantity": "34",
-      "type": "vegetable",
-      "id": 9
     }
   ],
   "foodType": [

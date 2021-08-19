@@ -1,13 +1,21 @@
 import { Food, NewFood } from "../types/Food";
 
+const baseUrl = process.env.REACT_APP_BASE_URL;
+
 export async function getFood() {
-  const response = await fetch("http://localhost:3001/inventory");
+  const response = await fetch(baseUrl + "inventory");
   if (!response.ok) throw new Error("Call to get foods failed!");
   return response.json() as Promise<Food[]>;
 }
 
+export async function getSingleFood(id: number) {
+  const response = await fetch(baseUrl + "inventory/" + id);
+  if (!response.ok) throw new Error("Call to get a single food failed!");
+  return response.json() as Promise<Food>;
+}
+
 export async function deleteFood(id: number) {
-  const response = await fetch("http://localhost:3001/inventory/" + id, {
+  const response = await fetch(baseUrl + "inventory/" + id, {
     method: "DELETE",
   });
   if (!response.ok) {
@@ -28,6 +36,13 @@ export async function createFood(newFood: NewFood) {
   return response.json();
 }
 
-export async function updateFood() {
-  return fetch("http://localhost:3001/inventory");
+export async function updateFood(food: Food) {
+  const response = await fetch(
+    "http://localhost:3001/inventory/update/" + food.id,
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(food),
+    }
+  );
 }

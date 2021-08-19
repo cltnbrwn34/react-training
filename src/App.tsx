@@ -1,19 +1,12 @@
 import { getFood, deleteFood } from "./api/foodsApi";
 import { useEffect, useState } from "react";
-import { Food, NewFood } from "./types/Food";
+import { Food } from "./types/Food";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const emptyFood: NewFood = {
-  name: "",
-  quantity: "",
-  minimumQuantity: "",
-  type: "",
-};
+import { Link } from "react-router-dom";
 
 export function App(props: any) {
   const [inventory, setFoods] = useState<Food[]>([]);
-  const [newFood, setNewFood] = useState<NewFood>(emptyFood);
   //const [foodOptions, setFoodOptions] = useState<SelectOption[]>([]);
 
   useEffect(() => {
@@ -36,6 +29,10 @@ export function App(props: any) {
     <>
       <ToastContainer />
       <h1>Restaurant Manager</h1>
+      <br />
+      <Link className="btn btn-secondary" to="/foodForm">
+        Add Food
+      </Link>
       <br />
       <ul>
         {/* exercise 1: display quantity next to food with a dash in between */}
@@ -69,7 +66,9 @@ export function App(props: any) {
                   </button>
                 </td>
                 <td>{food.quantity}</td>
-                <td>{food.name}</td>
+                <td>
+                  <Link to={`/food/{$food.id}`}>{food.name}</Link>
+                </td>
                 <td>{food.minimumQuantity}</td>
                 <td>{food.type}</td>
               </tr>
